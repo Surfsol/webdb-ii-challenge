@@ -3,12 +3,14 @@
 module.exports = {
 
   development: {
-     //client -> db driver
     client: 'sqlite3',
     connection: {
-      filename: '/data/car-dealer.db3'
+      filename: './data/cardb.db3'
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
+    seeds: {
+      directory: './data/migrations'
+    }
   },
 
   staging: {
