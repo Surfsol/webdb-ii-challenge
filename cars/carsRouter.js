@@ -18,4 +18,22 @@ router.get('/', async (req, res) => {
     }
 })
 
+// if(!VIN || !make || !model || !mileage || !transmission_type || !title_status){
+//     res.status(500).json({message: 'Missing info'})
+// } else {
+
+router.post('/', async(req, res) => {
+    try{
+    const carBody = req.body
+    const [id] = await db('cars').insert(carBody)
+    const newCar = await db('cars').where({id})
+
+    res.status(201).json(newCar)
+    } catch (err) {
+    console.log = ('Post error', err);
+    res.status(500).json({message: 'Failed to store data'})
+    }
+})
+
+
 module.exports = router
